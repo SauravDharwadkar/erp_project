@@ -1,11 +1,11 @@
-FROM python:3.8-alpine
+FROM ubuntu:python3.8
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV DEBUG 0
 
-RUN apk update \
-    && apk add --virtual build-deps gcc python3-dev musl-dev  mariadb-client
+RUN apt update && apt upgrade -y \
+    apt install -y python3-dev libmysqlclient 
 
 WORKDIR /app
 
@@ -13,6 +13,7 @@ RUN pip install --upgrade pip
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
+
 
 COPY . .
 
