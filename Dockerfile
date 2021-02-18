@@ -5,7 +5,7 @@ ENV PYTHONUNBUFFERED 1
 ENV DEBUG 0
 
 RUN apk update \
-    && apk add virtual build-deps gcc python3-dev musl-dev  mariadb-client
+    && apk add --virtual build-deps gcc python3-dev musl-dev  mariadb-client
 
 WORKDIR /app
 
